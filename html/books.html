@@ -16,6 +16,7 @@
             <img src="../img/logo.png">
             <h2>Wordly</h2>
         </div>
+        <button id="menu-toggle">☰ Menu</button>
         <nav>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
@@ -31,6 +32,7 @@
                 <video id="preloader-video" src="../preloader.mp4" muted autoplay></video>
             </div>
         </div>
+        <div class="outer">
         <div class="story_parent">
             <div class="story_container">
                 <div class="stories" data-url="wolf.html">
@@ -70,6 +72,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </main>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -131,6 +134,14 @@
                 preloader.classList.add("hidden");
             }
         };
+        document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('menu-toggle');
+        const dropdownMenu = document.querySelector('nav');
+
+    menuToggle.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('show');
+    });
+});
     </script>
 </body>
 </html>
