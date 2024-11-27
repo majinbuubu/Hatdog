@@ -89,7 +89,7 @@ body{
 }
 
 .stories:nth-child(4) {
-    background: linear-gradient(to top, black 20%, Transparent 100%), url(../img/The-Snowy-Day-by-Ezra-Jack-Keats.jpg) no-repeat;
+    background: linear-gradient(to top, black 20%, Transparent 100%), url(../img/clever.jpg) no-repeat;
     background-size: cover;
     background-position: 100% center;
 }
@@ -98,7 +98,7 @@ body{
     animation: gradient-fade-story4 1s ease-out forwards;
 }
 
-.stories:nth-child(5) {
+/* .stories:nth-child(5) {
     background: linear-gradient(to top, black 20%, Transparent 100%), url(../img/black\ beauty.jpg) no-repeat;
     background-size: cover;
     background-position: 100% center;
@@ -106,7 +106,7 @@ body{
 
 .stories:nth-child(5):hover{
     animation: gradient-fade-story5 1s ease-out forwards;
-}
+} */
 
 .stories:hover {
     flex-grow: 1.5;
