@@ -26,10 +26,14 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 100%;
     height: auto;
     overflow: hidden;
     margin-top: 20vh;
+}
+
+.overflow-hidden {
+    overflow: hidden;
 }
 
 .mainmain{
@@ -92,6 +96,9 @@ main {
     z-index: 1;
 }
 
+.focused.mainmain {
+    overflow: hidden;
+}
 
 .focused-poem {
     position: absolute;

@@ -59,24 +59,41 @@ window.onload = () => {
 };
 
 const poems = document.querySelectorAll('.poems');
+const mainmain = document.querySelector('.mainmain');  // Assuming there's a single element with class 'mainmain'
 
 poems.forEach(poem => {
     poem.addEventListener('click', () => {
         const isFocused = poem.classList.contains('focused-poem');
 
+        // Remove blur effect from the body and reset all poems
         document.body.classList.remove('blur-background');
         poems.forEach(p => {
             p.classList.remove('focused-poem', 'unfocusing');
         });
 
+        // Toggle the 'mainmain' class for overflow control
         if (!isFocused) {
             document.body.classList.add('blur-background');
             poem.classList.add('focused-poem');
+            if (mainmain) {
+                mainmain.classList.add('overflow-hidden');  // Add overflow-hidden class when the poem is focused
+                mainmain.style.overflowY = 'hidden';  // Directly set overflow-y to hidden when the poem is focused
+                
+                // Force reflow
+                mainmain.offsetHeight;  // Trigger a reflow (this doesn't need to be assigned)
+            }
         } else {
             poem.classList.add('unfocusing');
             setTimeout(() => {
                 poem.classList.remove('unfocusing', 'focused-poem');
                 document.body.classList.remove('blur-background');
+                if (mainmain) {
+                    mainmain.classList.remove('overflow-hidden');  // Remove overflow-hidden class when the poem is unfocused
+                    mainmain.style.overflowY = 'scroll';  // Reset overflow-y to scroll when the poem is unfocused
+
+                    // Force reflow again
+                    mainmain.offsetHeight;  // Trigger a reflow
+                }
             }, 500);
         }
     });

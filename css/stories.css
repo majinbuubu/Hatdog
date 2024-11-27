@@ -132,3 +132,11 @@ video {
     background-color: #666;
     border-color: #666;
 }
+
+
+@media screen and (max-width: 768px) {
+    .story-content p {
+        display: block;
+    }
+    
+}
