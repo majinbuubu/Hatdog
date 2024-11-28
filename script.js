@@ -59,28 +59,23 @@ window.onload = () => {
 };
 
 const poems = document.querySelectorAll('.poems');
-const mainmain = document.querySelector('.mainmain');  // Assuming there's a single element with class 'mainmain'
+const mainmain = document.querySelector('.mainmain');
 
 poems.forEach(poem => {
     poem.addEventListener('click', () => {
         const isFocused = poem.classList.contains('focused-poem');
-
-        // Remove blur effect from the body and reset all poems
         document.body.classList.remove('blur-background');
         poems.forEach(p => {
             p.classList.remove('focused-poem', 'unfocusing');
         });
-
-        // Toggle the 'mainmain' class for overflow control
         if (!isFocused) {
             document.body.classList.add('blur-background');
             poem.classList.add('focused-poem');
             if (mainmain) {
-                mainmain.classList.add('overflow-hidden');  // Add overflow-hidden class when the poem is focused
-                mainmain.style.overflowY = 'hidden';  // Directly set overflow-y to hidden when the poem is focused
+                mainmain.classList.add('overflow-hidden'); 
+                mainmain.style.overflowY = 'hidden'; 
                 
-                // Force reflow
-                mainmain.offsetHeight;  // Trigger a reflow (this doesn't need to be assigned)
+                mainmain.offsetHeight;
             }
         } else {
             poem.classList.add('unfocusing');
@@ -88,11 +83,10 @@ poems.forEach(poem => {
                 poem.classList.remove('unfocusing', 'focused-poem');
                 document.body.classList.remove('blur-background');
                 if (mainmain) {
-                    mainmain.classList.remove('overflow-hidden');  // Remove overflow-hidden class when the poem is unfocused
-                    mainmain.style.overflowY = 'scroll';  // Reset overflow-y to scroll when the poem is unfocused
+                    mainmain.classList.remove('overflow-hidden');
+                    mainmain.style.overflowY = 'scroll';
 
-                    // Force reflow again
-                    mainmain.offsetHeight;  // Trigger a reflow
+                    mainmain.offsetHeight; 
                 }
             }, 500);
         }
