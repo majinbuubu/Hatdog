@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow-y: visible;
 }
 
 body {
@@ -15,6 +14,7 @@ body {
 }
 
 main {
+    overflow: hidden;
     width: 100%;
     display: flex;
     height: 100vh;
@@ -53,12 +53,13 @@ main {
     width: 50vw;
     min-width: 600px;
     margin-top: 2%;
-    padding: 3vw;
+    padding: 3vw; 
     min-height: 90%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     transform: scale(1);
 }
+
 
 @keyframes focusAnimation {
     0% {
@@ -83,7 +84,7 @@ main {
 }
 
 .poems.unfocusing {
-    animation: unfocusAnimation 0.5s ease forwards;
+    animation: unfocusAnimation 1s ease forwards;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -105,7 +106,7 @@ main {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1.2);
-    z-index: 10;
+    z-index: 11;
     background: #fff;
     padding: 2rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
@@ -113,11 +114,18 @@ main {
     max-width: 30%;
     width: 50%;
     min-height: 1vh;
+    padding-right: calc(2rem + 17px);
     overflow-y: auto;
-    animation: focusAnimation 2s ease forwards;
+    animation: focusAnimation 1s ease forwards;
     filter: none;
 }
 
+
+.unfocusing {
+    transform: scale(1);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
 
 body.blur-background .poems-container .poems:not(.focused-poem) {
     opacity: 0.3;

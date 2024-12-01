@@ -58,68 +58,82 @@ window.onload = () => {
   }
 };
 
-const poems = document.querySelectorAll('.poems');
-const mainmain = document.querySelector('.mainmain');
 
-poems.forEach(poem => {
-    poem.addEventListener('click', () => {
-        const isFocused = poem.classList.contains('focused-poem');
-        document.body.classList.remove('blur-background');
-        poems.forEach(p => {
-            p.classList.remove('focused-poem', 'unfocusing');
-        });
-        if (!isFocused) {
-            document.body.classList.add('blur-background');
-            poem.classList.add('focused-poem');
-            if (mainmain) {
-                mainmain.classList.add('overflow-hidden'); 
-                mainmain.style.overflowY = 'hidden'; 
-                
-                mainmain.offsetHeight;
-            }
-        } else {
-            poem.classList.add('unfocusing');
-            setTimeout(() => {
-                poem.classList.remove('unfocusing', 'focused-poem');
-                document.body.classList.remove('blur-background');
-                if (mainmain) {
-                    mainmain.classList.remove('overflow-hidden');
-                    mainmain.style.overflowY = 'scroll';
 
-                    mainmain.offsetHeight; 
-                }
-            }, 500);
-        }
-    });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const poems = document.querySelectorAll('.poems');
+  const mainmain = document.querySelector('.mainmain');
+
+  poems.forEach(poem => {
+      poem.addEventListener('click', () => {
+          const isFocused = poem.classList.contains('focused-poem');
+          poems.forEach(p => {
+              p.classList.remove('focused-poem', 'unfocusing');
+          });
+
+          if (!isFocused) {
+              poem.classList.add('focused-poem');
+
+              // Hide overflow in the container when a poem is focused
+              if (mainmain) {
+                  mainmain.style.overflowY = 'hidden';
+                  mainmain.style.paddingRight = '17px';
+                  mainmain.offsetHeight;
+              }
+          } else {
+              poem.classList.add('unfocusing');
+
+              // After 500ms, remove the focus and blur
+              setTimeout(() => {
+                  poem.classList.remove('unfocusing', 'focused-poem');
+
+                  if (mainmain) {
+                      mainmain.style.overflowY = 'auto';
+                      mainmain.style.paddingRight = '';
+                      mainmain.offsetHeight;
+                  }
+              }, 1000);
+          }
+      });
+  });
+
+  // Close unfocused poem on Escape key press
+  document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+          poems.forEach(poem => {
+              if (poem.classList.contains('focused-poem')) {
+                  poem.classList.add('unfocusing');
+                  setTimeout(() => {
+                      poem.classList.remove('unfocusing', 'focused-poem');
+                      mainmain.style.overflowY = 'auto';
+                      mainmain.style.paddingRight = '';
+                      mainmain.offsetHeight;
+                  }, 1000);
+              }
+          });
+      }
+  });
+
+  // Close poem if click is outside the poem
+  document.addEventListener('click', (e) => {
+      if (!e.target.closest('.poems')) {
+          poems.forEach(poem => {
+              if (poem.classList.contains('focused-poem')) {
+                  poem.classList.add('unfocusing');
+                  setTimeout(() => {
+                      poem.classList.remove('unfocusing', 'focused-poem');
+                      mainmain.style.overflowY = 'auto';
+                      mainmain.style.paddingRight = '';
+                      mainmain.offsetHeight;
+                  }, 1000);
+              }
+          });
+      }
+  });
 });
 
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-        document.body.classList.remove('blur-background');
-        poems.forEach(poem => {
-            if (poem.classList.contains('focused-poem')) {
-                poem.classList.add('unfocusing');
-                setTimeout(() => {
-                    poem.classList.remove('unfocusing', 'focused-poem');
-                }, 500);
-            }
-        });
-    }
-});
 
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.poems')) {
-        poems.forEach(poem => {
-            if (poem.classList.contains('focused-poem')) {
-                poem.classList.add('unfocusing');
-                setTimeout(() => {
-                    poem.classList.remove('unfocusing', 'focused-poem');
-                    document.body.classList.remove('blur-background');
-                }, 500);
-            }
-        });
-    }
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.getElementById('menu-toggle');
