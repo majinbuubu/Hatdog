@@ -423,7 +423,7 @@ header {
         height: 50px;
     }
 
-    .active {
+    .actived {
         box-shadow: #000000 inset 0px 0px 50px 10px;
         border-radius: 10vw;
     }
